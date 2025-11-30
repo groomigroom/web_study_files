@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .move_box {
+            width: 1400px;
+            height: 500px;
+            position: relative;
+            background-color: blanchedalmond;
+            margin: 0 auto;
+        }
+
+        .move_box_object {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: black;
+            transition: all 2s ease 0s;
+
+        }
+
+        .move_box_object.on {
+            animation: move_box_object 4s ease;
+        }
+
+        @keyframes move_box_object {
+            0% {
+                top: 0px;
+                left: 0px;
+            }
+
+            25% {
+                top: 0px;
+                left: 1350px;
+            }
+
+            50% {
+                top: 450px;
+                left: 1350px;
+            }
+
+            75% {
+                top: 450px;
+                left: 0px;
+            }
+
+            100% {
+                top: 0px;
+                left: 0px;
+            }
+
+        }
+
+        .move_box_two {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .move_box_two_inner {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: black;
+            animation: move_box_up_down 7s ease infinite;
+        }
+
+        @keyframes move_box_up_down {
+            0% {
+                top: 50px;
+            }
+
+            47% {
+                top: 50px;
+            }
+
+            50% {
+                top: 0px;
+            }
+
+            97% {
+                top: 0px;
+            }
+
+            100% {
+                top: 50px;
+            }
+
+        }
+
+        .move_box_three {
+            width: 50px;
+            height: 50px;
+            background-color: brown;
+            animation: move_box_rotation 2s linear infinite;
+        }
+
+        @keyframes move_box_rotation {
+            0% {
+                transform: rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+
+        .moving_box_four_fullbox {
+            width: 1920px;
+            height: 1080px;
+            position: relative;
+        }
+
+        .moving_box_four {
+            width: 20px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            z-index: 100;
+
+            /* Motion Path */
+            offset-path: path("M405,131s-330,243-201,502,272,347,373,300,186-680,240-671,136.4697,684.275,372.421,683.0887,115.6624-831.2335,272.9633-814.0887,328.4813,814.0902,328.4813,814.0902");
+            -webkit-offset-path: path("M405,131s-330,243-201,502,272,347,373,300,186-680,240-671,136.4697,684.275,372.421,683.0887,115.6624-831.2335,272.9633-814.0887,328.4813,814.0902,328.4813,814.0902");
+
+            offset-rotate: auto;
+            -webkit-offset-rotate: auto;
+
+            animation: moving_box_four 3s linear infinite;
+        }
+
+        @keyframes moving_box_four {
+            0% {
+                offset-distance: 0%;
+                -webkit-offset-distance: 0%;
+            }
+
+            100% {
+                offset-distance: 100%;
+                -webkit-offset-distance: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="move_box">
+        <div class="move_box_object"></div>
+    </div>
+    <div class="move_box_two">
+        <div class="move_box_two_inner"></div>
+    </div>
+    <div class="move_box_three"></div>
+    <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+
+        <path id="my_path"
+            d="M405,131s-330,243-201,502,272,347,373,300,186-680,240-671,136.4697,684.275,372.421,683.0887,115.6624-831.2335,272.9633-814.0887,328.4813,814.0902,328.4813,814.0902"
+            stroke="black" fill="transparent"></path>
+
+        <!-- 애니메이션이 적용될 circle 요소 -->
+        <circle r="10" fill="#333333">
+            <animateMotion dur="3s" repeatCount="indefinite">
+                <mpath href="#my_path"></mpath>
+            </animateMotion>
+        </circle>
+
+    </svg>
+    <div class="moving_box_four_fullbox">
+        <div class="moving_box_four"></div>
+    </div>
+    <script>const move_box_object = document.querySelector(".move_box_object");
+        move_box_object.addEventListener("click", function () {
+            move_box_object.classList.remove("on");
+            void move_box_object.offsetWidth;
+            //void 는 “값을 평가하되, 그 결과값을 버려서 항상 undefined 를 반환하게 만드는 연산자” 입니다.
+            //.offsetWidth 는 HTML 요소의 실제 화면 너비(px)를 반환하는 자바스크립트 속성입니다.
+            //     offsetWidth는 요소의 실제 렌더링된 너비(px)를 반환하는 속성입니다.
+
+            // 중요: offsetWidth를 읽으면 브라우저가 즉시 reflow(레이아웃 계산) 를 수행함
+
+            // reflow가 일어나면 브라우저는 **“요소의 상태가 초기 상태로 돌아갔다”**고 판단함
+
+            // 따라서 .on을 다시 추가하면 animation이 처음부터 재실행됨
+            move_box_object.classList.add("on");
+        })
+
+
+/* <div class="move_box">
+    <div class="move_box_object"></div>
+</div>
+<script src="script.js">
+    ✔ CSS */
+    // css
+    // 코드 복사
+    // .move_box {
+    // width: 600px;
+    // height: 600px;
+    // background: #eee;
+    // position: relative;
+    // }
+
+    // .move_box_object {
+    // width: 30px;
+    // height: 30px;
+    // background: red;
+    // position: absolute;
+    // border-radius: 50%;
+    // }
+    // ✔ JavaScript — 원형 곡선 이동 (가장 쉽고 효과적)
+    // js
+    // 코드 복사
+    // const obj = document.querySelector('.move_box_object');
+
+    // let angle = 0;
+
+    // function animate(){
+    // angle += 0.02; // 회전 속도 조절
+
+    // 원형 궤도 (반지름 200px)
+    // const radius = 200;
+
+    // const x = radius * Math.cos(angle) + 250;
+    // const y = radius * Math.sin(angle) + 250;
+
+    // obj.style.left = x + "px";
+    // obj.style.top = y + "px";
+
+    // requestAnimationFrame(animate);
+    // }
+
+    // animate();
+    // 🎯 결과
+    // ● 요소가 부드러운 원형 곡선을 계속 움직입니다.
+    // ● Math.cos, Math.sin 값으로 부드러운 곡선을 만듭니다.
+
+    // ✅ 방법 2. 베지어 곡선(Bezier Curve)으로 곡선 경로 이동
+    // 베지어는 곡선을 자유롭게 만들 때 사용합니다.
+
+    // ✔ JS — 2차 베지어 곡선 이동 공식
+    // js
+    // 코드 복사
+    // const obj = document.querySelector('.move_box_object');
+
+    // let t = 0;
+
+    // const p0 = { x: 0, y: 0 };
+    // const p1 = { x: 200, y: 400 };
+    // const p2 = { x: 400, y: 0 };
+
+    // function animate(){
+    // t += 0.005; // 속도
+    // if (t > 1) t = 1; // 끝지점
+
+    // 2차 베지어 공식
+    // const x =
+    // (1-t)*(1-t)*p0.x +
+    // 2*(1-t)*t*p1.x +
+    // t*t*p2.x;
+
+    // const y =
+    // (1-t)*(1-t)*p0.y +
+    // 2*(1-t)*t*p1.y +
+    // t*t*p2.y;
+
+    // obj.style.left = x + "px";
+    // obj.style.top = y + "px";
+
+    // if (t < 1) requestAnimationFrame(animate); // } </script>
+</body>
+
+</html>
