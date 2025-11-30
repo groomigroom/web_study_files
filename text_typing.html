@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            
+            border-right: 3px solid rgb(109, 255, 174);
+            animation: blink 0.5s linear infinite, typing 2s steps(19) infinite;
+            width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+        @keyframes typing {
+            from{
+                width: 0;
+            }
+            to{
+                width: 217px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p>groom groom 구름이 멍멍멍</p>
+</body>
+</html>
