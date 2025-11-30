@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            overflow: hidden;
+        }
+
+        .container{
+            width: 100vw;
+            height: 100vh;
+    transition: transform 0.6s ease;
+
+
+        }
+
+        .section {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .s_one {
+            background-color: aquamarine;
+        }
+
+        .s_two {
+            background-color: cadetblue;
+        }
+
+        .s_three {
+            background-color: coral;
+        }
+
+        .s_four {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="section s_one"></div>
+        <div class="section s_two"></div>
+        <div class="section s_three">
+
+        </div>
+        <div class="section s_four"></div>
+    </div>
+    <script>
+        const container = document.querySelector(".container")
+        const sections = document.querySelectorAll(".section")
+        let current = 0
+        let startY = 0
+        let endY = 0
+
+        
+        document.addEventListener("mousedown", function(e){
+            startY = e.clientY
+        })
+        document.addEventListener("mouseup", function(e){
+            endY = e.clientY
+            handleDrag()
+        })
+
+        function handleDrag() {
+    const delta = startY - endY;
+    if (Math.abs(delta) < 50) return;
+
+    if (delta > 0 && current < sections.length - 1) current++;
+    else if (delta < 0 && current > 0) current--;  
+
+    container.style.transform = `translateY(-${current * 100}vh)`;  
+}
+
+
+
+    </script>
+</body>
+
+</html>
+
+<!--
+DOM 요소 선택
+const container = document.querySelector(".container")
+const sections = document.querySelectorAll(".section")
+let current = 0
+let startY = 0
+let endY = 0
+
+
+.container : 전체 섹션들을 감싸는 요소
+
+.section : 각각의 화면(페이지) 역할을 하는 요소들
+
+current : 현재 보고 있는 섹션 번호
+
+startY, endY : 마우스 드래그 시작 위치와 끝 위치
+
+✅ 2. 마우스 드래그 시작 위치 저장
+document.addEventListener("mousedown", function(e){
+    startY = e.clientY
+})
+
+
+마우스를 누르는 순간(y 위치)을 저장합니다.
+
+✅ 3. 드래그 끝 위치 저장 후 처리
+document.addEventListener("mouseup", function(e){
+    endY = e.clientY
+    handleDrag()
+})
+
+
+마우스를 떼는 시점의 y 위치를 저장하고 handleDrag() 함수 실행합니다.
+
+✅ 4. 드래그 방향 판단 및 화면 이동
+function handleDrag() {
+    const delta = startY - endY;
+    if (Math.abs(delta) < 50) return;  // 작은 움직임은 무시
+
+    if (delta > 0 && current < sections.length - 1) current++;   // 위로 드래그 → 다음 섹션
+    else if (delta < 0 && current > 0) current--;                 // 아래로 드래그 → 이전 섹션
+
+    container.style.transform = `translateY(-${current * 100}vh)`;  
+}
+
+✔ 드래그 방향 판단
+
+delta = startY - endY
+
+delta > 0 → 마우스를 위로 드래그
+
+delta < 0 → 마우스를 아래로 드래그
+
+변화량이 50px 미만이면 작은 움직임으로 판단하고 무시
+
+✔ 섹션 이동
+
+위로 드래그(delta > 0)
+→ current++ (다음 화면으로 이동)
+
+아래로 드래그(delta < 0)
+→ current-- (이전 화면으로 이동)
+
+✔ 실제 화면 이동
+container.style.transform = `translateY(-${current * 100}vh)`
+
+
+섹션 하나의 높이를 100vh(브라우저 전체 높이)로 보고
+
+current 값에 따라 컨테이너를 위로 밀어 올림
+
+예) current = 2 → translateY(-200vh)
+
+🎯 요약
+
+이 코드는:
+
+사용자가 마우스를 위/아래로 드래그한 방향을 감지해서
+
+.container를 전체 화면 높이 단위(100vh) 로 이동시키는
+
+풀페이지 스크롤(Full Page Scroll) 기능입니다.
+
+터치 버전
+
+const container = document.querySelector(".container");
+const sections = document.querySelectorAll(".section");
+let current = 0;
+let startY = 0;
+let endY = 0;
+
+// 터치 시작
+document.addEventListener("touchstart", function (e) {
+    startY = e.touches[0].clientY;
+});
+
+// 터치 종료
+document.addEventListener("touchend", function (e) {
+    endY = e.changedTouches[0].clientY;
+    handleDrag();
+});
+
+function handleDrag() {
+    const delta = startY - endY;
+    if (Math.abs(delta) < 50) return;
+
+    if (delta > 0 && current < sections.length - 1) current++;
+    else if (delta < 0 && current > 0) current--;
+
+    container.style.transform = `translateY(-${current * 100}vh)`;
+}
+
+마우스 및 터치 둘 다 가능하게 하려면
+
+document.addEventListener("mousedown", (e) => startY = e.clientY);
+document.addEventListener("mouseup",   (e) => { endY = e.clientY; handleDrag(); });
+
+document.addEventListener("touchstart", (e) => startY = e.touches[0].clientY);
+document.addEventListener("touchend",   (e) => { endY = e.changedTouches[0].clientY; handleDrag(); });
+
+
+-->
