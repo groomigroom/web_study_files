@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 50px 0;
+    }
+
+    .box {
+      width: 80%;
+      height: 200px;
+      margin: 100px auto;
+      background: #4a90e2;
+      color: white;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+
+      /* 처음엔 안 보이게 (투명 & 아래로 이동) */
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    /* 화면에 보이면 나타나는 효과 */
+    .box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>스크롤해서 아래로 내려보세요~~~~!!!!</h1>
+
+  <div class="box">1번째 박스</div>
+  <div class="box">2번째 박스</div>
+  <div class="box">3번째 박스</div>
+  <div class="box">4번째 박스</div>
+
+  <script>
+    /*
+const boxes = document.querySelectorAll('.box');
+
+// Intersection Observer 설정
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      // 한 번만 애니메이션 실행하려면 관찰 중단
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.2 // 20% 보이면 트리거
+});
+
+// 각 요소 관찰 시작
+boxes.forEach(box => observer.observe(box)); 
+*/
+
+
+    const boxes = document.querySelectorAll('.box');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+
+        // 50% 이상 보이면 show 추가
+        if (entry.intersectionRatio >= 0.5) {
+          entry.target.classList.add('show');
+        }
+        // 50% 미만으로 내려가면 show 제거
+        else {
+          entry.target.classList.remove('show');
+        }
+
+      });
+    }, {
+      threshold: [0, 0.5] // 여러 threshold 감지
+    });
+
+    boxes.forEach(box => observer.observe(box));
+
+
+
+
+    /*
+    아래 자바스크립트 코드는 Intersection Observer를 이용해서 .box 요소가 화면에 일정 부분(20%) 보이면 show 클래스를 추가하고, 한 번 애니메이션이 실행되면 더 이상 관찰하지 않도록 설정한 스크립트입니다.
+    각 줄이 어떤 의미인지 자세히 해석해 드릴게요.
+    
+    ✅ 코드 해석
+    const boxes = document.querySelectorAll('.box');
+    
+    
+    HTML 문서에서 .box 클래스를 가진 모든 요소들을 선택함.
+    
+    boxes는 NodeList(배열 비슷한 객체)입니다.
+    
+    // Intersection Observer 설정
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          // 한 번만 애니메이션 실행하려면 관찰 중단
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2 // 20% 보이면 트리거
+    });
+    
+    ➤ IntersectionObserver 생성
+    
+    entries: 화면에 보이는지 여부가 변경된 요소들의 목록
+    
+    observer: 현재 옵저버 인스턴스
+    
+    🔍 작동 방식
+    
+    요소가 화면에 20% 이상 보이면(entry.isIntersecting === true):
+    
+    entry.target(해당 요소)에 .show 클래스를 추가 → CSS 애니메이션 또는 효과 실행함.
+    
+    observer.unobserve(entry.target)
+    
+    효과가 한 번 실행되면 더 이상 감시하지 않도록 함.
+    
+    즉, 스크롤할 때마다 반복 실행되지 않음.
+    
+    // 각 요소 관찰 시작
+    boxes.forEach(box => observer.observe(box));
+    
+    
+    .box 각각에 대해 관찰을 시작함.
+    
+    페이지 스크롤 중 화면에 등장할 때 위 로직이 실행되게 됨.
+    
+    📌 요약
+    기능	설명
+    .box 요소 모두 찾기	document.querySelectorAll('.box')
+    IntersectionObserver 생성	요소가 화면에 보이는 순간 감지
+    isIntersecting	요소가 threshold만큼 보이면 true
+    .show 클래스 추가	애니메이션 또는 효과 발동
+    unobserve	한 번만 실행되도록 관찰 중단
+    threshold: 0.2	요소의 20%가 보이면 작동
+    
+    원하시면 이 코드에 맞는 CSS 애니메이션 예제도 만들어 드릴까요?
+    */
+  </script>
+</body>
+
+</html>
