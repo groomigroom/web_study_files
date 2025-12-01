@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.5em;
+            font-weight: 300;
+            background-color: #fff;
+            color: #222;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: #222;
+        }
+
+        .tab-inner {
+            /*    border: 1px solid red;*/
+            width: 300px;
+            height: 350px;
+            position: relative;
+        }
+
+        input[name=tabmenu] {
+            display: none;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .btn {
+            /*    position: absolute를 주는 순간 inline-block이 되면서 width 값을 잃어버림  */
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn label {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            background-color: lightgray;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 3px;
+        }
+
+        input[id=tab1]:checked~.slide1 {
+            display: block;
+        }
+
+        input[id=tab2]:checked~.slide2 {
+            display: block;
+        }
+
+        input[id=tab3]:checked~.slide3 {
+            display: block;
+        }
+
+        input[id=tab1]:checked~.btn label:nth-child(1) {
+            background-color: crimson;
+        }
+
+
+        input[id=tab2]:checked~.btn label:nth-child(2) {
+            background-color: crimson;
+        }
+
+
+        input[id=tab3]:checked~.btn label:nth-child(3) {
+            background-color: crimson;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab-inner">
+        <input type="radio" name="tabmenu" id="tab1" checked="checked">
+        <input type="radio" name="tabmenu" id="tab2">
+        <input type="radio" name="tabmenu" id="tab3">
+
+        <div class="content slide1">
+            구름구름
+        </div>
+        <div class="content slide2">
+            구름이구름
+        </div>
+        <div class="content slide3">
+            구구르믈므
+        </div>
+
+        <div class="btn">
+            <label for="tab1"></label>
+            <label for="tab2"></label>
+            <label for="tab3"></label>
+        </div>
+    </div>
+</body>
+
+</html>
