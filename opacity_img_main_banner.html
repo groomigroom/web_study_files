@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구름이</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+        }
+
+        .station {
+            width: 1200px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .train {
+            width: 1200px;
+            height: 300px;
+            position: relative;
+
+        }
+
+        .train>li {
+            width: 1200px;
+            height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: all 0.6s ease 0s;
+        }
+
+        .train>li:nth-child(1)>div {
+            width: 1200px;
+            height: 300px;
+            background-color: aquamarine;
+        }
+
+        .train>li:nth-child(2)>div {
+            width: 1200px;
+            height: 300px;
+            background-color: rgb(238, 153, 138);
+        }
+
+        .train>li:nth-child(3)>div {
+            width: 1200px;
+            height: 300px;
+            background-color: rgb(125, 132, 231);
+        }
+
+        .train>li.on {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="station">
+        <ul class="train">
+            <li class="on">
+                <div>구름</div>
+            </li>
+            <li>
+                <div>구름이</div>
+            </li>
+            <li>
+                <div>구름이</div>
+            </li>
+        </ul>
+        <script>
+            let train = document.querySelectorAll(".train>li")
+            let count = 0
+            setInterval(function () {
+                count++
+                if (count > 2) { count = 0 }
+                for (let i = 0; i < train.length; i++) {
+                    train[i].classList.remove("on")
+                }
+                train[count].classList.add("on")
+            }, 2500)
+        </script>
+    </div>
+</body>
+
+</html>
