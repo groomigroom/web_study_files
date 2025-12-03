@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구름이의 박스</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: chocolate;
+        }
+
+        body,
+        .container,
+        .overlay {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            position: relative;
+            height: 450px;
+            width: 350px;
+            border-radius: 16px;
+            background-color: aquamarine;
+            overflow: hidden;
+        }
+
+        .container.active {
+            background-color: rgb(36, 117, 90);
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            height: 650px;
+            width: 650px;
+            background-image: conic-gradient(transparent, transparent, transparent, #6fffab);
+        }
+
+        /*
+        background-image: conic-gradient(transparent, transparent, transparent, #6fffab); 코드는 요소의 배경 이미지를 투명 색상에서 밝은 민트 그린 색상(#6fffab)으로 부드럽게 전환되는 원뿔형 그라데이션으로 설정합니다.
+이 코드는 다음과 같은 의미를 갖습니다:
+conic-gradient(): 배경 이미지를 생성하는 CSS 함수로, 시계 방향으로 회전하는 색상 전환을 만듭니다. [1]
+transparent, transparent, transparent: 그라데이션의 시작점에서부터 처음 3개의 색상 정지점(color stops)이 모두 투명함을 의미합니다. 이는 그라데이션이 시작되는 원의 중심점 주변의 넓은 영역이 완전히 투명하게 유지됨을 뜻합니다.
+#6fffab: 마지막 색상 정지점으로, 밝은 민트 그린 색상을 나타냅니다. [1] 
+        */
+
+        .container.active::before{
+            animation: active_rotate 4s linear infinite;
+        }
+
+        @keyframes active_rotate{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+
+        }
+        .container>.overlay{
+            position: absolute;
+            height: 440px;
+            width: 340px;
+            font-size: 25px;
+            font-weight: bold;
+            color: #ffffff;
+            border-radius: 12px;
+            background-color: chocolate;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container active">
+        <span class="overlay" id="percent">0%</span>
+    </div>
+    <script>
+        const container = document.querySelector(".container")
+        const percent = document.querySelector("#percent")
+        let per_value = 0
+        let increament = setInterval(function(){
+            per_value++
+            percent.textContent = `${per_value}%`
+            if (per_value == 100){
+                clearInterval(increament)
+                container.classList.remove("active")
+            }
+        },100)
+
+//         1. setInterval(function(){ ... }, 100)
+
+// 100ms(0.1초)마다 안의 함수를 반복 실행합니다.
+
+// 이 반복 실행의 ID가 increament 변수에 저장됩니다.
+
+// 2. per_value++
+
+// per_value를 1씩 증가시킵니다.
+
+// 3. percent.textContent = ${per_value}%``
+
+// 어떤 요소(예: <span id="percent"></span> 같은 것)의
+// 텍스트를 "현재 값%" 형태로 업데이트합니다.
+
+// 4. if (per_value == 100)
+
+// per_value가 100에 도달하면
+
+// 5. clearInterval(increament)
+
+// setInterval 반복을 정지시킵니다.
+
+// 6. container.classList.remove("active")
+
+// container 요소에서 "active" 클래스를 제거합니다.
+// → 보통 로딩 애니메이션 종료 같은 상황에서 사용됩니다.
+
+//let increament를 만드는 이유는 setInterval을 나중에 멈추기 위해서입니다.
+    </script>
+</body>
+
+</html>
