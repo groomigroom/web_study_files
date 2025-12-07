@@ -56,7 +56,57 @@ app.listen(port, ()=>{
 console.log(`Example app listening on port ${port}`)
 })
 
-30분까지 봄.
+
+
+예제
+
+app.get('/dog', (req, res) => {
+res.send('멍멍이 세상')
+})
+
+app.get('/cat', (req, res) => {
+res.send('고양이 세상')
+})
+
+위에 멍멍이 세상 안에, "" 안에 html 구조를 넣을 수도 있음.
+json 형태로 {'sound': '멍멍멍'} 이런거도 넣을 수도 있음. 이럴 때는 res.json으로 해도 됨.
+
+
+
+localhost 뒤에 /dog 이런식으로 해야지 멍멍이 세상이 나옴.
+
+
+파라미터로 받기
+
+app.get('/user/:id', (req, res) => {
+const q = req.params
+console.log(q)
+res.send('고양이 세상')
+})
+위와 같이 하면 아이디 변수값으로 받을 수 있음.
+
+app.get('/user/:id', (req, res) => {
+const q = req.params
+console.log(q.id)
+res.json({'userid': q.id})
+})
+
+쿼리 값으로 받기
+
+app.get('/user/:id', (req, res) => {
+const q = req.query
+console.log(q.id)
+res.json({'userid': q.id})
+})
+
+
+app.get('/user/:id', (req, res) => {
+const q = req.query
+console.log(q.q)
+console.log(q.name)
+
+res.json({'userid': q.name})
+})
+
+45.51분까지 봄.
 https://www.youtube.com/watch?v=Tt_tKhhhJqY&t=3065s
-
-
