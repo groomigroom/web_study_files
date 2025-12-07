@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="groomgroom">구름이</p>
+    <style>
+        .groomgroom {
+            font-size: 70px;
+            color: #333333;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            font-weight: bold;
+        }
+    </style>
+    <p class="groom">구름이</p>
+    <style>
+        .groom {
+            font-size: 70px;
+            color: #333333;
+            /* 글자 내부 채우기 색 */
+            -webkit-text-stroke: 15px rgb(154, 255, 221);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <p class="groom_groom">구름이</p>
+    <style>
+        .groom_groom {
+            font-size: 70px;
+            position: absolute;
+            top: 100px;
+            left: 0px;
+            color: white;
+            /* 글자색 */
+            text-shadow:
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+    </style>
+    <p class="text" data-content="구름구름이">구름구름이</p>
+    <style>
+        .text {
+            font-size: 100px;
+            z-index: 0;
+            position: absolute;
+            top: 250px;
+        }
+
+        .text::before {
+            z-index: -1;
+            content: attr(data-content);
+            position: absolute;
+            left: 0;
+            -webkit-text-stroke: 4px #ffa9f9;
+        }
+
+        /*
+        attr(data-content)
+
+        attr() 함수는 HTML 요소의 특정 속성(attribute) 값을 읽어오는 함수입니다.
+
+        attr(data-content)는
+        해당 요소에 있는 data-content 속성의 값을 가져옵니다.
+
+        종합: content: attr(data-content); 의 의미
+
+        해당 요소의 data-content 속성에 들어 있는 텍스트를 가상 요소의 내용으로 사용하라.
+        */
+    </style>
+
+</body>
+
+</html>
