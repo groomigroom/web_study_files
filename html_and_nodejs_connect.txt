@@ -1,0 +1,115 @@
+1단계
+
+vscode 터미널에서
+npm install cors --save
+
+2단계
+
+<src/main/controller/index.js>
+
+// 이부분 router를 지정하여 각 사용할 api 지정
+const router = require('express').Router();
+const MainViewController = require('./MainViewController');
+const MemberController = require('./MemberController');
+const StoreController = require('./StoreController');
+
+// cors 해결
+const cors = require('cors');
+
+// 아래는 특정 host만 허용 (리액트 프로젝트 적용전)
+// const corsOption = {
+//   origin: 'http://example.com',
+//   optionsSuccessStatus: 200
+// }
+
+
+// 각각 api 접근 허용을 위해 cors()를 추가해줍니다.
+router.get('/', cors(), MainViewController.mainView)
+router.get('/memberView/', cors(), MemberController.memberView)
+router.get('/storeView/', cors(), StoreController.storeView)
+
+module.exports = router;
+
+코드 설명 (변경점)
+1) router.get() 부분에서 cors()만 추가하였습니다.
+2) 현재, 테스트용 html를 샘플로 생성 후 작업할 것이기 때문에 corsOption은 제거하고 모든 권한만 설정하였습니다.
+3) 차후, React 서버를 이용하여 적용 시 corsOption으로 추가하여 진행할 예정입니다.
+
+<src/main/controller/MainViewController.js>
+
+exports.mainView = (request, response, next) => {
+  try {
+    response.json({pageNm: 'main 화면'})
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+<src/main/controller/MemberController.js>
+
+exports.memberView = (request, response, next) => {
+  try {
+    response.json({pageNm:'member 화면', id:"홍길동"})
+
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+<src/main/controller/StoreController.js>
+
+exports.storeView = (request, response, next) => {
+  try {
+    response.json({pageNm:'매장 화면', id:"홍길동", storeCd: 'cd1'})
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+3단계 
+
+테스트용 html
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+  <h1>화면 api 테스트</h1>
+  <button onclick="viewHtml('/')">api : /</button>
+  <button onclick="viewHtml('/memberView')">api : /memberView/</button>
+  <button onclick="viewHtml('/storeView')">api : /storeView/</button>
+
+  <div id="htmlRequest">
+
+  </div>
+  <script>
+    const viewHtml = (path) => {
+      fetch('http://localhost:300' + path)
+      .then(res => res.json())
+      .then(
+        res => {
+          document.getElementById('htmlRequest').innerHTML = "response 값 : " + JSON.stringify(res);
+        }
+      )
+      .catch(e => console.log(e))
+    }
+  </script>
+</body>
+</html>
+
+4단계
+
+결과 
+
+<버튼을 api : / 클릭 시 >
+response 값 : {"pageNm":"main 화면"}
+<버튼을 api : /memberView/ 클릭 시>
+response 값 : {"pageNm":"main 화면", "id":"홍길동"}
+<버튼을 api: /storeView/ 클릭 시 >
+response 값 : {"pageNm":"매장 화면", "id":"홍길동", "storeCd":"cd1"}
+
