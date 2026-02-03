@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header_wrap {
+            width: 100px;
+            height: 0px;
+            background-color: aqua;
+            transition: all 0.6s ease 0s;
+        }
+
+        .header_wrap.on {
+            height: 100px;
+        }
+
+        .slide {
+            width: 1200px;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .train {
+            width: 3600px;
+            height: 400px;
+            display: flex;
+            background-color: azure;
+            transition: all 0.6s ease 0s;
+        }
+
+        .train>div {
+            width: 1200px;
+            height: 400px;
+
+
+        }
+
+
+
+        .tabs {
+            display: flex;
+        }
+
+        .tabs>a.on {
+            color: aqua;
+        }
+
+        .tab_contents {
+            width: 400px;
+            height: 200px;
+        }
+
+        .tab_contents>ul {
+            display: none;
+        }
+
+        .tab_contents>ul.on {
+            display: flex;
+        }
+
+        .tab_contents_one {
+            flex-direction: column;
+        }
+
+        .tab_contents_two>li {
+            width: 200px;
+            height: 300px;
+        }
+
+        .popup {
+            width: 300px;
+            height: 300px;
+            display: none;
+            background-color: antiquewhite;
+        }
+
+        .popup.on {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="gnb">구구</ul>
+    <div class="header_wrap"></div>
+    <div class="slide">
+        <div class="train">
+            <div class="on">구그르므음</div>
+            <div>ㅇ너란어란어란이ㅓ란ㅇ</div>
+            <div>ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</div>
+        </div>
+    </div>
+    <div class="tabs">
+        <a class="on" href="#">구름</a>
+        <a href="#">구름22</a>
+    </div>
+    <div class="tab_contents">
+        <ul class="tab_contents_one on">
+            <li class="btn_open">r</li>
+            <li>d</li>
+            <li>d</li>
+            <li>s</li>
+        </ul>
+        <ul class="tab_contents_two">
+            <li>r</li>
+            <li>d</li>
+            <li>d</li>
+            <li>s</li>
+        </ul>
+    </div>
+    <div class="popup">
+        <div class="btn_close">dddd</div>
+    </div>
+    <script>
+        let train = document.querySelector(".train")
+        let count = 0
+        setInterval(function () {
+            count++
+            if (count > 2) { count = 0 }
+            train.style.transform = `translateX(${-33.333 * count}%)`
+        }, 2500)
+        let tabs = document.querySelectorAll(".tabs>a")
+        let tab_contents = document.querySelectorAll(".tab_contents>ul")
+        tabs.forEach(function (tab, index) {
+            tab.addEventListener("click", function () {
+                tabs[0].classList.remove("on")
+                tabs[1].classList.remove("on")
+                tab.classList.add("on")
+                tab_contents[0].classList.remove("on")
+                tab_contents[1].classList.remove("on")
+                tab_contents[index].classList.add("on")
+            })
+        })
+        let btn_close = document.querySelector(".btn_close")
+        let btn_open = document.querySelector(".btn_open")
+        let popup = document.querySelector(".popup")
+        btn_close.addEventListener("click", function(){
+            popup.classList.remove("on")
+        })
+        btn_open.addEventListener("click", function(){
+            popup.classList.add("on")
+        })
+        let gnb = document.querySelector(".gnb")
+        let header_wrap = document.querySelector(".header_wrap")
+        gnb.addEventListener("mouseenter", function(){
+            header_wrap.classList.add("on")
+        })
+        gnb.addEventListener("mouseleave", function(){
+            header_wrap.classList.remove("on")
+        })
+    </script>
+
+</body>
+
+</html>
