@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .carousel{
+    margin: 100px auto;
+    width: 90%;
+    border: 5px solid red;
+    display: flex;
+    overflow-x: auto;
+    gap: 1em;
+}
+.carousel::-webkit-scrollbar{
+    display: none;
+}
+.group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    animation: spin 5s infinite linear;
+    padding-right: 1em;
+}
+.card{
+    flex: 0 0 5em;
+    height: 5em;
+    padding: 1em;
+    background-color: aquamarine;
+    font-size: 3rem;
+    border-radius: .2em;
+    text-align: center;
+    align-content: center;
+}
+@keyframes spin {
+    from {translate: 0;}
+    to {translate: -100%;}
+}
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <div class="group">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+        </div>
+        <div aria-hidden class="group">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+        </div>
+    </div>
+</body>
+</html>
