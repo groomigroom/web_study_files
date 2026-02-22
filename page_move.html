@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #home{
+            background-color: beige;
+        }
+        #about{
+            background-color: rgb(220, 223, 245);            
+        }
+        #contact{
+            background-color: chocolate;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+  <ul>
+    <li><a href="#" onclick="showPage('home')">홈</a></li>
+    <li><a href="#" onclick="showPage('about')">소개</a></li>
+    <li><a href="#" onclick="showPage('contact')">문의</a></li>
+  </ul>
+</nav>
+
+<div id="home" class="page">홈 내용</div>
+<div id="about" class="page" style="display:none;">소개 내용</div>
+<div id="contact" class="page" style="display:none;">문의 내용</div>
+
+<script>
+function showPage(pageId){
+  document.querySelectorAll('.page').forEach(p => p.style.display='none');
+  document.getElementById(pageId).style.display='block';
+}
+</script>
+</body>
+</html>
