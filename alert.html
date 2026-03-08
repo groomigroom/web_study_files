@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #ohsnap {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: auto;
+            z-index: 9999;
+        }
+
+        /* 기본 알림 스타일 */
+        .alert {
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        /* 색상 스타일 */
+        .alert-success {
+            background-color: #28a745;
+        }
+
+        .alert-danger {
+            background-color: #dc3545;
+        }
+
+        .alert-warning {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .alert-info {
+            background-color: #17a2b8;
+        }
+
+        /* 아이콘이 있을 때 */
+        .alert span {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>알림 예시</h2>
+
+    <button onclick="ohSnap('성공적으로 저장되었습니다!', {color:'success'})">
+        성공 알림
+    </button>
+
+    <button onclick="ohSnap('경고가 필요합니다!', {color:'warning'})">
+        경고 알림
+    </button>
+
+    <button onclick="ohSnap('문제가 발생했습니다!', {color:'danger'})">
+        에러 알림
+    </button>
+
+    <button onclick="ohSnap('정보를 참고하세요!', {color:'info'})">
+        정보 알림
+    </button>
+
+    <!-- 알림이 표시될 컨테이너 -->
+    <div id="ohsnap"></div>
+    <script>
+        function ohSnap(text, options) {
+            const defaultOptions = {
+                color: null,
+                icon: null,
+                duration: 5000,
+                "container-id": "ohsnap",
+                "fade-duration": 300
+            };
+
+            options = Object.assign({}, defaultOptions, options || {});
+
+            const container = document.getElementById(options["container-id"]);
+            if (!container) return;
+
+            let iconMarkup = "";
+            let colorMarkup = "";
+
+            if (options.icon) {
+                iconMarkup = `<span class="${options.icon}"></span> `;
+            }
+
+            if (options.color) {
+                colorMarkup = "alert-" + options.color;
+            }
+
+            const div = document.createElement("div");
+            div.className = `alert ${colorMarkup}`;
+            div.innerHTML = iconMarkup + text;
+
+            div.style.opacity = "0";
+            div.style.transition = `opacity ${options["fade-duration"]}ms`;
+
+            container.appendChild(div);
+
+            // fadeIn
+            requestAnimationFrame(() => {
+                div.style.opacity = "1";
+            });
+
+            div.addEventListener("click", function () {
+                ohSnapX(div);
+            });
+
+            setTimeout(function () {
+                ohSnapX(div);
+            }, options.duration);
+        }
+
+        function ohSnapX(element, options) {
+            const defaultOptions = {
+                duration: 300
+            };
+
+            options = Object.assign({}, defaultOptions, options || {});
+
+            function fadeOut(el) {
+                el.style.transition = `opacity ${options.duration}ms`;
+                el.style.opacity = "0";
+
+                setTimeout(() => {
+                    if (el.parentNode) {
+                        el.parentNode.removeChild(el);
+                    }
+                }, options.duration);
+            }
+
+            if (element) {
+                fadeOut(element);
+            } else {
+                document.querySelectorAll(".alert").forEach(el => fadeOut(el));
+            }
+        }
+    </script>
+</body>
+
+</html>
