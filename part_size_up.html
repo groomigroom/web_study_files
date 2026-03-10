@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<style>
+  /* 돋보기 효과를 적용할 컨테이너 */
+  .img-magnifier-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* 돋보기 렌즈 (원형) */
+  .img-magnifier-glass {
+    position: absolute;
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    /* 렌즈 크기 */
+    width: 150px;
+    height: 150px;
+    /* 숨김 처리 */
+    display: none;
+    background-repeat: no-repeat;
+  }
+</style>
+</head>
+<body>
+
+<div class="img-magnifier-container" id="container">
+  <img id="myimage" src="your-image.jpg" width="600" height="400" alt="Sample Image">
+  <div class="img-magnifier-glass" id="glass"></div>
+</div>
+
+<script>
+function magnifier(imgID, glassID, zoom) {
+  let img, glass, w, h, bw;
+  img = document.getElementById(imgID);
+  glass = document.getElementById(glassID);
+  
+  // 돋보기 렌즈의 배경 설정 (원본 이미지를 크게 확대)
+  glass.style.backgroundImage = "url('" + img.src + "')";
+  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+  
+  // 마우스 이벤트 등록
+  glass.addEventListener("mousemove", moveMagnifier);
+  img.addEventListener("mousemove", moveMagnifier);
+  glass.addEventListener("mouseleave", () => { glass.style.display = "none"; });
+
+  function moveMagnifier(e) {
+    let pos, x, y;
+    e.preventDefault();
+    
+    // 마우스 위치 가져오기
+    pos = getCursorPos(e);
+    x = pos.x;
+    y = pos.y;
+    
+    // 렌즈가 이미지 영역 안에 있도록 제한
+    if (x > img.width - (glass.offsetWidth / zoom)) {x = img.width - (glass.offsetWidth / zoom);}
+    if (x < glass.offsetWidth / zoom) {x = glass.offsetWidth / zoom;}
+    if (y > img.height - (glass.offsetHeight / zoom)) {y = img.height - (glass.offsetHeight / zoom);}
+    if (y < glass.offsetHeight / zoom) {y = glass.offsetHeight / zoom;}
+    
+    // 렌즈 위치 이동 및 배경 이미지 위치 계산
+    glass.style.display = "block";
+    glass.style.left = (x - glass.offsetWidth / 2) + "px";
+    glass.style.top = (y - glass.offsetHeight / 2) + "px";
+    glass.style.backgroundPosition = "-" + ((x * zoom) - glass.offsetWidth / 2) + "px -" + ((y * zoom) - glass.offsetHeight / 2) + "px";
+  }
+
+  function getCursorPos(e) {
+    let a, x = 0, y = 0;
+    e = e || window.event;
+    a = img.getBoundingClientRect(); // 이미지의 위치 정보
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+
+// 돋보기 함수 호출 (배율 3배)
+magnifier("myimage", "glass", 3);
+</script>
+
+</body>
+</html>
