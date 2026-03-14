@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mouse_follower {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            /* 원형 모양 */
+            position: fixed;
+            /* 뷰포트 기준 고정 */
+            pointer-events: none;
+            /* 클릭 이벤트 방해 금지 */
+            transform: translate(-50%, -50%);
+            /* 중심점 맞추기 */
+            z-index: 9999;
+            /* 다른 요소 위에 표시 */
+            transition: transform 0.1s ease-out;
+            /* 부드러운 움직임 (옵션) */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mouse_follower"></div>
+    <script>
+        const follower = document.querySelector('.mouse-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            // 마우스의 현재 위치(e.clientX, e.clientY)를 follower의 위치로 설정
+            follower.style.left = e.clientX + 'px';
+            follower.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+
+</html>
