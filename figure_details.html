@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시맨틱 블록 태그</title>
+    <style>
+        @font-face {
+            font-family: 'YPairing';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-4@1.1/YPairingFont.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'YPairing';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-4@1.1/YPairingFont-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'YPairing';
+            color: #333333;
+        }
+
+        header {
+            width: 100vw;
+            height: 100px;
+            position: relative;
+            border-bottom: 1px solid #333333;
+        }
+
+        header>h4 {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        header>p {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h4>코알라</h4>
+        <p>코알라는 호주 동부에 서식하는 캥거루목에 속하는 동물이다.</p>
+    </header>
+    <figure><img src="./media1/koala1.png" alt="코알라" height="140px">
+        <figcaption>코알라 모습</figcaption>
+    </figure>
+    <p>생활사 등 여러 면에서는 나무늘보와 가깝다.</p>
+    <hr>
+    <details>
+        <summary>나무늘보</summary>
+        <p>한국어로 나무와 느림보의 합성어가 너무 잘 어울리는 동물.</p>
+    </details>
+</body>
+
+</html>
