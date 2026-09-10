@@ -1,0 +1,1 @@
+input type="submit" 버튼에 표시되는 글자를 바꾸려면 value 속성을 사용하시면 됩니다.
