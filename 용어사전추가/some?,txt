@@ -1,0 +1,4 @@
+if (values.some(value => value === "")) {
+                tencm_e_last_result.textContent = "최종 결과: ";
+                return;
+            }
