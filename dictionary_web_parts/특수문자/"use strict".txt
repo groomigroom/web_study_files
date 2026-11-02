@@ -1,0 +1,35 @@
+자바스크립트에서 "use strict"는 '엄격 모드(Strict Mode)'를 활성화하는 지시문입니다. [1] (https://m.blog.naver.com/on21life/221654555798), [2] (https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Strict_mode)
+자바스크립트는 원래 기존 코드와의 호환성을 위해 꽤 유연하고 암묵적인 방식(슬로피 모드, Sloppy Mode)으로 동작하지만, use strict를 사용하면 언어의 문법과 에러 처리를 더 엄격하게 검사하도록 만듭니다. [1] (https://velog.io/@sunkim/Javascript-use-strict%EB%9E%80), [2] (https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Strict_mode), [3] (https://m.blog.naver.com/on21life/221654555798)
+공식적인 설명과 가이드는 MDN Web Docs Strict mode에서 확인할 수 있습니다.
+
+1. 주요 특징 및 효과
+
+• 암묵적 전역 변수 방지
+	• 변수를 var, let, const 없이 실수로 선언하면 기존에는 전역 변수로 자동 생성되었지만, 엄격 모드에서는 에러(ReferenceError)가 발생합니다. [1] (https://coddy.tech/docs/ko/javascript/strict-mode)
+• 조용한 에러(Silent errors)를 예외로 전환
+	• 기존에는 무시되거나 조용히 실패하던 연산들(예: 읽기 전용(read-only) 프로퍼티에 값 할당, 확장 불가 객체에 속성 추가 등)에서 실행 에러(TypeError)가 발생합니다.
+• this 바인딩 변화
+	• 함수를 일반 함수로 호출했을 때 내부의 this가 전역 객체(window)를 가리키던 것과 달리, 엄격 모드에서는 undefined로 초기화됩니다.
+• 중복된 매개변수명 금지
+	• 함수 정의 시 동일한 이름의 매개변수를 사용하는 것을 허용하지 않습니다 (예: function foo(a, a) {} -> 에러).
+• with 문 사용 금지
+	• 코드를 분석하기 어렵게 만드는 with 문법을 사용할 수 없습니다.
+• 예약어 보호
+	• 미래 버전의 자바스크립트에서 예약어로 사용될 단어들(예: implements, interface, package, private, protected, public 등)을 변수명으로 쓰는 것을 제한합니다.
+
+2. 사용 방법
+
+스크립트 전체의 최상단이나 특정 함수 내부에 문자열 "use strict"; (또는 'use strict';)를 선언하면 됩니다. [1] (https://www.reddit.com/r/learnjavascript/comments/1ap5kme/what_is_use_client_or_use_strict_actually_doing/?tl=ko), [2] (https://m.blog.naver.com/on21life/221654555798), [3] (https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Strict_mode)
+• 전역 적용 (스크립트 전체)javascript
+"use strict";
+
+x = 3.14; // 에러 발생! (변수 선언 없이 사용 불가)
+코드를 사용할 때는 주의가 필요합니다.
+• 함수 단위 적용javascript
+function myFunction() {
+  "use strict";
+  y = 3.14; // 이 함수 내부에서만 에러 발생
+}
+코드를 사용할 때는 주의가 필요합니다.
+*(참고: ES6의 **모듈(Modules)*이나 클래스(Classes) 내부에서는 자동으로 엄격 모드가 적용됩니다.)
+엄격 모드 사용 중 기존 코드에서 발생할 수 있는 에러 해결법이나, 모던 자바스크립트(ES6+)에서 변수를 안전하게 관리하는 법에 대해 더 알고 싶으신가요?
