@@ -1,0 +1,47 @@
+이미 one이라는 변수에 해당 id 요소를 가져왔으므로, DOM 속성과 메서드를 사용해 내부 요소의 텍스트와 속성을 쉽게 조작할 수 있습니다.
+원하는 각 요소를 변경하는 자바스크립트 코드는 다음과 같습니다.
+
+1. <h4> 안의 글자 내용 조작 (텍스트 변경)
+
+one 변수 내부에서 querySelector로 h4 태그를 찾아 textContent 또는 innerText를 변경합니다.
+javascript
+one.querySelector("h4").textContent = "새로운 아이돌 이름";
+코드를 사용할 때는 주의가 필요합니다.
+
+2. <a> 태그의 href 속성 조작
+
+one 변수 자체가 <a> 태그이므로, one.href 또는 setAttribute를 사용해 직접 변경합니다.
+javascript
+one.href = "/group-main/new-path/main.html";
+// 또는
+one.setAttribute("href", "/group-main/new-path/main.html");
+코드를 사용할 때는 주의가 필요합니다.
+
+3. <img> 태그의 src와 alt 속성 조작
+
+one 변수 내부에서 img 태그를 찾아 속성을 변경합니다.
+javascript
+const imgTag = one.querySelector("img");
+
+imgTag.src = "../group-main/new-path/imgs/new_img.jpg"; // 이미지 경로 변경
+imgTag.alt = "새로운 그룹명"; // alt 텍스트 변경
+코드를 사용할 때는 주의가 필요합니다.
+
+💡 한 번에 작성하는 종합 예시 코드
+
+javascript
+// 1. 요소 가져오기
+const one = document.getElementById("idollist1");
+
+// 2. h4 텍스트 변경
+one.querySelector("h4").textContent = "ARTMS";
+
+// 3. a 태그 href 변경
+one.href = "/group-main/artms/artms-main.html";
+
+// 4. img 태그 src 및 alt 변경
+const idolImg = one.querySelector("img");
+idolImg.src = "../group-main/artms/imgs/artms_m_img.jpg";
+idolImg.alt = "ARTMS";
+코드를 사용할 때는 주의가 필요합니다.
+이 조작을 특정 버튼을 클릭했을 때 실행하고 싶거나, 여러 개의 아이돌 리스트를 반복문(for문)으로 한 번에 처리하는 방법이 필요하시면 말씀해 주세요. 관련 코드를 추가로 안내해 드리겠습니다.
