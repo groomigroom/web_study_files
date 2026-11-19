@@ -1,0 +1,14 @@
+.doruriwrite_content {
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 140%;
+    font-weight: 500;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* 안전한 줄바꿈을 위한 추가 속성 
+  word-break: keep-all;      한글은 단어 단위로 예쁘게 줄바꿈 
+  overflow-wrap: break-word; 300px을 넘는 긴 영단어/URL은 강제 줄바꿈 */
