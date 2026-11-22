@@ -1,0 +1,45 @@
+Tailwind CSS에서는 static, relative, absolute, fixed, sticky 클래스로 position을 지정하고, top-*, right-*, bottom-*, left-* 또는 inset-* 유틸리티로 좌표를 잡습니다. 자세한 스펙은 공식 문서 Tailwind CSS Position에서 확인할 수 있습니다. [1] (https://tailwindcss.com/docs/position), [2] (https://csstotailwind.com/ko/guides/css-positioning-to-tailwind/)
+
+기본 Position 클래스
+
+• static: 기본 흐름을 따르며 위치 좌표가 적용되지 않습니다.
+• relative: 원래 위치를 기준으로 이동하며, absolute 자식의 기준점이 됩니다.
+• absolute: 일반 흐름에서 빠지며, static이 아닌 가장 가까운 조상을 기준으로 배치됩니다.
+• fixed: 브라우저 뷰포트를 기준으로 고정됩니다.
+• sticky: 스크롤 임계점(top-0 등)에 닿으면 fixed처럼 붙었다가 부모 영역을 벗어나면 풀립니다. [1] (https://tw-elements.com/docs/standard/extended/position/), [2] (https://www.youtube.com/watch?v=9SzZPphnnx0&t=5), [3] (https://www.youtube.com/watch?v=EZ-eVvvkF2M&t=127), [4] (https://tailwindcss.com/docs/position)
+
+좌표 지정 및 자주 쓰는 패턴
+
+
+1. 부모 기준 배치 (relative + absolute)
+
+html
+<div class="relative h-40 w-40 bg-gray-100">
+  <span class="absolute top-2 right-2 bg-black text-white px-2 py-1 text-xs">
+    NEW
+  </span>
+</div>
+코드를 사용할 때는 주의가 필요합니다.
+
+2. 정중앙 배치
+
+html
+<div class="relative h-40 w-40 bg-gray-100">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    중앙
+  </div>
+</div>
+코드를 사용할 때는 주의가 필요합니다.
+
+3. 화면 고정 및 상단 고정
+
+• 화면 우측 하단 버튼: fixed bottom-4 right-4
+• 스크롤 시 상단 고정 헤더: sticky top-0 z-10
+
+4. 유용한 좌표 유틸리티
+
+• 한 번에 여백 지정: inset-0(상하좌우 0), inset-x-4(좌우 1rem), inset-y-2(상하 0.5rem)
+• 반대 방향 이동: -top-2, -left-4처럼 앞에 -를 붙입니다.
+• 반응형 적용: md:static, lg:fixed처럼 브레이크포인트 접두사를 붙입니다. [1] (https://v3.tailwindcss.com/docs/position), [2] (https://www.youtube.com/watch?v=8Hh3jyGAfxc&t=81), [3] (https://tailwindcss.com/docs/position)
+relative와 absolute를 조합해 기준점을 잡고 좌표를 이동하는 과정을 시각적으로 확인하려면 아래 영상을 참고하세요:
+구현하려는 UI 요소(예: 모달, 뱃지, 고정 헤더, 드롭다운)나 원하는 위치를 알려주시면, 그에 맞는 Tailwind 클래스 코드를 바로 작성해 드릴게요.
