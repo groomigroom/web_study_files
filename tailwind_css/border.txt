@@ -1,0 +1,4 @@
+border-15
+border-blue-50
+
+이런식으로
