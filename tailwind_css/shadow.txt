@@ -1,10 +1,11 @@
-Tailwind CSS에서는 shadow-* 유틸리티 클래스로 박스 그림자(box-shadow)를 적용하고, shadow-[...] 대괄호 구문으로 원하는 값을 직접 지정할 수 있습니다. [1] (https://www.coddykit.com/ko/courses/learn_tailwind_css/box-shadows-10756591), [2] (https://coddy.tech/learn/ko/tailwind/fundamentals/shadow_depth), [3] (https://rudaks.tistory.com/entry/Tailwind-CSS-%EB%B2%88%EC%97%AD-box-shadow)
+Tailwind CSS에서는 shadow-* 유틸리티 클래스로 박스 그림자(box-shadow)를 적용하고, shadow-[...] 
+대괄호 구문으로 원하는 값을 직접 지정할 수 있습니다.
 
 기본 그림자 크기 및 제거
 
 • 크기 조절: shadow-2xs, shadow-sm, shadow, shadow-md, shadow-lg, shadow-xl, shadow-2xl 등으로 그림자 깊이를 조절합니다.
 • 그림자 제거: shadow-none을 붙이면 기존 그림자를 없앱니다.
-• 안쪽 그림자: inset-shadow-* 또는 shadow-inner 계열 유틸리티로 내부 그림자 효과를 줍니다. [1] (https://www.coddykit.com/ko/courses/learn_tailwind_css/box-shadows-10756591), [2] (https://rudaks.tistory.com/entry/Tailwind-CSS-%EB%B2%88%EC%97%AD-box-shadow)
+• 안쪽 그림자: inset-shadow-* 또는 shadow-inner 계열 유틸리티로 내부 그림자 효과를 줍니다. 
 html
 <div class="shadow-md">기본 중간 그림자</div>
 <div class="shadow-lg shadow-none md:shadow-lg">반응형 그림자</div>
@@ -14,6 +15,7 @@ html
 
 • 색상 지정: shadow-blue-500/50, shadow-black/20처럼 색상과 투명도 조합을 함께 쓸 수 있습니다.
 • 임의 값(Arbitrary Value): shadow-[0_8px_20px_rgba(0,0,0,0.15)]처럼 대괄호 안에 공백 대신 밑줄(_)을 넣어 CSS 값을 직접 작성합니다.
-• 텍스트 및 SVG 그림자: 텍스트 그림자는 text-shadow-* 유틸리티를, 투명 배경이나 SVG 형태를 따르는 그림자는 drop-shadow-* 유틸리티를 활용합니다. [1] (https://coddy.tech/learn/ko/tailwind/fundamentals/shadow_depth), [2] (https://csstotailwind.com/ko/guides/css-shadows-to-tailwind/), [3] (https://aotoyae.tistory.com/entry/CSSNext-tailwind-drop-shadow-%ED%83%9C%EA%B7%B8%EC%97%90-%EA%B7%B8%EB%A6%BC%EC%9E%90-%EB%84%A3%EA%B8%B0), [4] (https://www.youtube.com/watch?v=HTFHoA12MJk&t=10)
+• 텍스트 및 SVG 그림자: 텍스트 그림자는 text-shadow-* 유틸리티를, 투명 배경이나 SVG 형태를 따르는 그림자는 drop-shadow-* 유틸리티를 활용합니다. 
+
 Tailwind CSS에서 박스 그림자 크기와 투명도, 깊이감을 주는 실제 적용 방식을 영상으로 확인할 수 있습니다:
 원하는 그림자 스타일이나 Tailwind 버전(v3 또는 v4)을 알려주시면 예제 코드나 커스텀 설정 방법을 더 자세히 안내해 드릴 수 있습니다.
