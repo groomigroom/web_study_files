@@ -4,11 +4,14 @@ CSS transform을 표현합니다. (Tailwind v4 기준 translate-x-4, rotate-45 �
 
 주요 Transform 유틸리티
 
-• 이동 (translate): translate-x-<값>, translate-y-<값>, translate-z-<값>으로 축별 이동을 지정하며, 앞에 -를 붙이면 음수 방향으로 이동합니다. 백분율(translate-1/2, -translate-x-1/2)과 임의 값(translate-x-[20px])도 지원합니다.
+• 이동 (translate): translate-x-<값>, translate-y-<값>, translate-z-<값>으로 축별 이동을 지정하며, 
+앞에 -를 붙이면 음수 방향으로 이동합니다. 백분율(translate-1/2, -translate-x-1/2)과 
+임의 값(translate-x-[20px])도 지원합니다.
 • 크기 조절 (scale): scale-<값>, scale-x-<값>, scale-y-<값>, scale-z-<값>으로 배율을 조절합니다.
 • 회전 (rotate): rotate-<각도> 또는 -rotate-<각도>로 요소를 회전합니다.
 • 기울기 (skew): skew-x-<각도>, skew-y-<각도>로 요소를 기울입니다.
-• 변환 제어 (transform-*): transform-gpu로 GPU 가속을 적용하거나 transform-none으로 변형을 해제할 수 있고, 3D 자식 요소를 유지하려면 transform-3d를 사용합니다. [1] (https://tailwindcss.com/docs/transform-style), [2] (https://www.youtube.com/watch?v=E6yNDmSTno0&t=295), [3] (https://tailwindcss.com/docs/translate), [4] (https://www.youtube.com/watch?v=z9sHOXheE_M&t=565), [5] (https://tailwindcss.com/docs/transform)
+• 변환 제어 (transform-*): transform-gpu로 GPU 가속을 적용하거나 transform-none으로 변형을 해제할 수 있고, 
+3D 자식 요소를 유지하려면 transform-3d를 사용합니다.
 
 자주 쓰는 조합 예시
 
