@@ -1,4 +1,6 @@
-Tailwind CSS에서는 translate-*, scale-*, rotate-*, skew-* 같은 개별 변형 유틸리티 클래스를 조합해 CSS transform을 표현합니다. (Tailwind v4 기준 translate-x-4, rotate-45 등 변형 유틸리티를 바로 사용할 수 있으며, transform-gpu나 transform-none 같은 제어 클래스도 제공합니다.) [1] (https://tailwindcss.com/docs/transform), [2] (https://tailwindcss.com/docs/translate), [3] (https://www.youtube.com/watch?v=z9sHOXheE_M&t=565)
+Tailwind CSS에서는 translate-*, scale-*, rotate-*, skew-* 같은 개별 변형 유틸리티 클래스를 조합해 
+CSS transform을 표현합니다. (Tailwind v4 기준 translate-x-4, rotate-45 등 변형 유틸리티를 
+바로 사용할 수 있으며, transform-gpu나 transform-none 같은 제어 클래스도 제공합니다.) 
 
 주요 Transform 유틸리티
 
