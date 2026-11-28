@@ -22,3 +22,35 @@
 </body>
 
 </html>
+<!--
+Tailwind CSS에서 flex 적용 후 justify-content는 justify-*, align-items는 items-* 클래스로 지정합니다. [1] (https://www.coddykit.com/ko/courses/learn_tailwind_css/justify-content-and-align-items-10747328), [2] (https://yslifenotes.tistory.com/67)
+html
+<div class="flex justify-between items-center h-24">
+  <div>왼쪽</div>
+  <div>오른쪽</div>
+</div>
+코드를 사용할 때는 주의가 필요합니다.
+
+주요 클래스
+
+justify-* (주축 정렬 — 기본 flex-row 기준 가로) [1] (https://tailwindcss.com/docs/justify-content), [2] (https://www.youtube.com/watch?v=NatVwozfNwA&t=5), [3] (https://caesar0731.github.io/css/Tailwind-Flex-%EC%A0%95%EB%A6%AC/)
+• justify-start: 시작점 정렬 (flex-start)
+• justify-center: 가운데 정렬 (center)
+• justify-end: 끝점 정렬 (flex-end)
+• justify-between: 양 끝 배치 후 사이 균등 여백 (space-between)
+• justify-around: 각 요소 주변 균등 여백 (space-around)
+• justify-evenly: 양 끝 포함 모든 간격 균등 (space-evenly) [1] (https://www.youtube.com/watch?v=NatVwozfNwA&t=5), [2] (https://tailwindcss.com/docs/justify-content)
+items-* (교차축 정렬 — 기본 flex-row 기준 세로) [1] (https://www.youtube.com/watch?v=7FzTsTqBHGY&t=5), [2] (https://yslifenotes.tistory.com/67)
+• items-start: 시작점 정렬 (flex-start)
+• items-center: 가운데 정렬 (center)
+• items-end: 끝점 정렬 (flex-end)
+• items-stretch: 컨테이너 높이에 맞춰 늘림 (stretch)
+• items-baseline: 텍스트 기준선 정렬 (baseline)
+
+참고 포인트
+
+• 세로 방향(flex-col)일 때: justify-*가 세로축, items-*가 가로축이 됩니다.
+• 반응형 적용: md:justify-center, lg:items-start처럼 화면 크기 접두사를 붙일 수 있습니다. [1] (https://tailwindcss.com/docs/justify-content), [2] (https://www.youtube.com/watch?v=7FzTsTqBHGY&t=5), [3] (https://caesar0731.github.io/css/Tailwind-Flex-%EC%A0%95%EB%A6%AC/)
+원하시는 레이아웃 형태(예: 네비게이션 바, 카드 중앙 배치, 세로 정렬 flex-col)를 알려주시면 맞는 Tailwind 클래스 예시를 바로 만들어 드릴게요.
+
+-->
